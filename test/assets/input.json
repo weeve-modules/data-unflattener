@@ -1,24 +1,27 @@
-{
-    "employees": [
-        {
-            "name": "Ram",
-            "email": "ram@gmail.com",
-            "age": 23
-        },
-        {
-            "name": "Shyam",
-            "email": "shyam23@gmail.com",
-            "age": 28
-        },
-        {
-            "name": "John",
-            "email": "john@gmail.com",
-            "age": 33
-        },
-        {
-            "name": "Bob",
-            "email": "bob32@gmail.com",
-            "age": 41
-        }
-    ]
-}
+[
+    {
+        "employees/0/name/first-name": "Ram",
+        "employees/0/name/family-name": "Blue",
+        "employees/0/email": "ram@gmail.com",
+        "employees/0/age": 23,
+        "employees/1/name/first-name": "Shyam",
+        "employees/1/name/family-name": "Red",
+        "employees/1/email/0/address": "shyam23@gmail.com",
+        "employees/1/email/0/type": "business",
+        "employees/1/email/1/address": "shyam23@hotmail.com",
+        "employees/1/email/1/type": "private",
+        "employees/1/age": 28,
+        "employees/2/name": "John",
+        "employees/2/email": "john@gmail.com",
+        "employees/2/age/year": 1990,
+        "employees/2/age/month": "January",
+        "employees/2/age/day": 1,
+        "employees/3/name": "Bob",
+        "employees/3/email": "bob32@gmail.com",
+        "employees/3/age": 41
+    },
+    {
+        "location/city": "Berlin",
+        "location/country": "Germany"
+    }
+]
