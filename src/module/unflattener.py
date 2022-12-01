@@ -20,7 +20,11 @@ def unflattener(data):
             temp[fields[-1]] = v
 
         if __SEARCH_FOR_LISTS__:
-            base = check_data_for_lists(base)
+            # wrap base object into an extra dictionary to use recursion in check_data_for_lists
+            wrapped_base = {
+                "wrapped-base-root": base
+            }
+            base = check_data_for_lists(wrapped_base)["wrapped-base-root"]
 
         return base
 
@@ -39,6 +43,9 @@ def check_data_for_lists(data):
 
                     for ck in list(objects_copy.keys()):
                         data[k].append(check_data_for_lists(objects_copy[ck]))
+                else:
+                    data[k] = check_data_for_lists(data[k])
+
         return data
 
     except Exception as e:
