@@ -28,7 +28,7 @@ The following module configurations can be provided in a data service designer s
 
 | Name                 | Environment Variables     | type     | Description                                              |
 | -------------------- | ------------------------- | -------- | -------------------------------------------------------- |
-| Parentness    | PARENTNESS         | string   | Symbol for indicating parentness in your data labels, i.e. if parentness is `/` then data `{'location/city': 'Berlin'}` will be restored to `{'location': {'city': 'Berlin'}}`.            |
+| Delimiter    | DELIMITER         | string   | Symbol for indicating parentness delimiter in your data labels, i.e. if delimiter is `/` then data `{'location/city': 'Berlin'}` will be restored to `{'location': {'city': 'Berlin'}}`.            |
 | Search for Lists    | SEARCH_FOR_LISTS         | string  | If true then numbers in data labels will indicate list indexing in the restored data, i.e. `{'location/0/city': 'Berlin'}` will be restored to `{'location': [ {'city': 'Berlin'} ]}`.            |
 
 
@@ -98,7 +98,7 @@ Input to this module is:
 
 ## Output
 
-If `PARENTNESS = /` and `SEARCH_FOR_LISTS = True` then output of this module is:
+If `DELIMITER = /` and `SEARCH_FOR_LISTS = True` then output of this module is:
 
 * JSON body single object, example:
 

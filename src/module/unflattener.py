@@ -3,7 +3,7 @@ from logging import getLogger
 
 log = getLogger("unflattener")
 
-__PARENTNESS__ = os.getenv("PARENTNESS", "/")
+__DELIMITER__ = os.getenv("DELIMITER", "/")
 __SEARCH_FOR_LISTS__ = bool(os.getenv("SEARCH_FOR_LISTS", "True"))
 
 def unflattener(data):
@@ -11,7 +11,7 @@ def unflattener(data):
         base = {}
 
         for k, v in data.items():
-            fields = k.split(__PARENTNESS__)
+            fields = k.split(__DELIMITER__)
             temp = base
             for f in fields[:-1]:
                 if f not in temp:

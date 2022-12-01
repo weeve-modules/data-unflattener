@@ -12,9 +12,9 @@ image:
   homepage: 'https://hub.docker.com/r/weevenetwork/data-unflattener'      # Image homepage from the docker registry.
 repository: 'https://github.com/weeve-modules/data-unflattener'     # Repository URL to source code.
 envs:                                   # Array of environment variables that will be used to configure the module. Also used to show related fields on the UI.
-  - name: Parentness
-    key: PARENTNESS
-    description: "Symbol for indicating parentness in your data labels, i.e. if parentness is / then data {'location/city': 'Berlin'} will be restored to {'location': {'city': 'Berlin'}}"
+  - name: Delimiter
+    key: DELIMITER
+    description: "Symbol for indicating parentness delimiter in your data labels, i.e. if delimiter is / then data {'location/city': 'Berlin'} will be restored to {'location': {'city': 'Berlin'}}"
     value: '/'
     type: 'select'
     options:

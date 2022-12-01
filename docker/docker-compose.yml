@@ -10,7 +10,7 @@ services:
       INGRESS_HOST: "0.0.0.0"
       INGRESS_PORT: "80"
       EGRESS_URLS: "https://testdockercompose.free.beeceptor.com"
-      PARENTNESS: "/"
+      DELIMITER: "/"
       SEARCH_FOR_LISTS: True
     ports:
       - 80:80
