@@ -20,29 +20,37 @@ def unflattener(data):
             temp[fields[-1]] = v
 
         if __SEARCH_FOR_LISTS__:
-            base = checkDataForLists(base)
+            base = check_data_for_lists(base)
 
         return base
 
     except Exception as e:
         return f"Exception when trying to unflatten data: {data}. Exception: {e}"
 
-def checkDataForLists(data):
+def check_data_for_lists(data):
     try:
         for k, v in data.items():
             if type(v) == dict:
-                all_digits = True
-                for ck in list(v.keys()):
-                    if not ck.isdigit():
-                        all_digits = False
+                all_digits = keys_are_digits(v)
 
                 if all_digits:
                     objects_copy = data[k]
                     data[k] = []
 
                     for ck in list(objects_copy.keys()):
-                        data[k].append(checkDataForLists(objects_copy[ck]))
+                        data[k].append(check_data_for_lists(objects_copy[ck]))
         return data
 
     except Exception as e:
         return f"Exception when trying to search for lists in data: {data}. Exception: {e}"
+
+def keys_are_digits(data):
+    for key in list(data.keys()):
+        if not key.isdigit():
+            return False
+
+    return True
+
+
+
+
