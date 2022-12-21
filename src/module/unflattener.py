@@ -20,36 +20,30 @@ def unflattener(data):
             temp[fields[-1]] = v
 
         if __SEARCH_FOR_LISTS__:
-            # wrap base object into an extra dictionary to use recursion in check_data_for_lists
-            wrapped_base = {
-                "wrapped-base-root": base
-            }
-            base = check_data_for_lists(wrapped_base)["wrapped-base-root"]
+            base = dict_to_list(base)
 
         return base
 
     except Exception as e:
         return f"Exception when trying to unflatten data: {data}. Exception: {e}"
 
-def check_data_for_lists(data):
-    try:
-        for k, v in data.items():
-            if type(v) == dict:
-                all_digits = keys_are_digits(v)
-
-                if all_digits:
-                    objects_copy = data[k]
-                    data[k] = []
-
-                    for ck in list(objects_copy.keys()):
-                        data[k].append(check_data_for_lists(objects_copy[ck]))
-                else:
-                    data[k] = check_data_for_lists(data[k])
-
+def dict_to_list(data):
+    if type(data) != dict: # hit a leaf (scalar value)
         return data
 
-    except Exception as e:
-        return f"Exception when trying to search for lists in data: {data}. Exception: {e}"
+    # assume that data is a dict
+    if keys_are_digits(data):
+        # needs to be transformed into a list
+        new_data = list(data.values())
+        for i in range(len(new_data)):
+            new_data[i] = dict_to_list(new_data[i])
+    else:
+        # no transformation needed
+        new_data = data
+        for key in data.keys():
+            new_data[key] = dict_to_list(new_data[key])
+
+    return new_data
 
 def keys_are_digits(data):
     for key in list(data.keys()):
