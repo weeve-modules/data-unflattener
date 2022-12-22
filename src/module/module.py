@@ -6,6 +6,7 @@ Edit this file to implement your module.
 """
 
 from logging import getLogger
+from .unflattener import unflattener
 
 log = getLogger("module")
 
@@ -27,9 +28,24 @@ def module_main(received_data: any) -> [any, str]:
     log.debug("Processing ...")
 
     try:
-        # YOUR CODE HERE
+        if type(received_data) == list:
+            processed_data = []
 
-        processed_data = received_data
+            for data in received_data:
+                restored = unflattener(data)
+
+                # in case of unflattener returning error
+                if type(restored) == str:
+                    return None, restored
+
+                processed_data.append(restored)
+
+        else:
+            processed_data = unflattener(received_data)
+
+            # in case of unflattener returning error
+            if type(processed_data) == str:
+                return None, processed_data
 
         return processed_data, None
 

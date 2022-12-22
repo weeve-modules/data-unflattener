@@ -1,6 +1,6 @@
 SHELL := /bin/bash # to enable source command in run_app
 
-MODULE=weevenetwork/boilerplate
+MODULE=weevenetwork/data-unflattener
 VERSION_NAME=v1.0.0
 
 install_dev:

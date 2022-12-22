@@ -1,14 +1,16 @@
 version: "3.0"
 services:
-  boilerplate:
+  data-unflattener:
     build:
       context: ../
       dockerfile: docker/Dockerfile
     environment:
-      MODULE_NAME: "boilerplate"
+      MODULE_NAME: "data-unflattener"
       MODULE_TYPE: "Processing"
       INGRESS_HOST: "0.0.0.0"
       INGRESS_PORT: "80"
       EGRESS_URLS: "https://testdockercompose.free.beeceptor.com"
+      DELIMITER: "/"
+      SEARCH_FOR_LISTS: True
     ports:
       - 80:80
